@@ -1,0 +1,167 @@
+{
+	"info": {
+		"_postman_id": "b8afa193-76a7-4cab-ad49-1401cb4b3d19",
+		"name": "be-data-app.api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "29842349"
+	},
+	"item": [
+		{
+			"name": "Create Entity on 8083",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true,
+					"connection": true,
+					"accept-encoding": true,
+					"user-agent": true,
+					"host": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "host=[161.27.43.53:8083];accept=[application/json",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "host",
+						"value": "",
+						"type": "text"
+					},
+					{
+						"key": "accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Provider-Context-Broker",
+						"value": "http://{{IPOneNet FULVIO}}:1027",
+						"description": "Provider-Context-Broker: provider.context.broker.com/ is mandatory so that Provider DataApp knows which provider CB should sned request to",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Forward-To",
+						"value": "https://ecc-provider:8889/data",
+						"description": "Forward-To: ecc-providr.com is mandatory so that Consumer Connector knows location of B-endoint for Provider Connector. Request will contain URL of Provider Context Broker, so that Provider Data App knows where to forward request\n",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": \"urn:ngsi-ld:Building:id1\",\n    \"type\": \"Building\",\n    \"category\": {\n        \"type\": \"Property\",\n        \"value\": [\n            \"commercial\"\n        ]\n    },\n    \"address\": {\n        \"type\": \"Property\",\n        \"value\": {\n            \"streetAddress\": \"Via Emanuele Gianturco 15\",\n            \"addressRegion\": \"Campania\",\n            \"addressLocality\": \"Napoli\",\n            \"postalCode\": \"80142\"\n        },\n        \"verified\": {\n            \"type\": \"Property\",\n            \"value\": true\n        }\n    },\n    \"location\": {\n        \"type\": \"GeoProperty\",\n        \"value\": {\n            \"type\": \"Point\",\n            \"coordinates\": [\n                14.286190426655033,\n                40.845961239858234\n            ]\n        }\n    },\n    \"name\": {\n        \"type\": \"Property\",\n        \"value\": \"Engineering Ingegneria Informatica\"\n    },\n    \"@context\": [\n        \"https://fiware.github.io/data-models/context.jsonld\",\n        \"https://uri.etsi.org/ngsi-ld/v1/ngsi-ld-core-context-v1.3.jsonld\"\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:8083/createentity/",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"createentity",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Registration on 8084",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"entityId\": \"urn:ngsi-ld:Building:id1\",\r\n    \"eccUrl\": \"https://ecc-provider:8889/data\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:8084/registration",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8084",
+					"path": [
+						"registration"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Entity 8084",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true,
+					"connection": true,
+					"accept-encoding": true,
+					"user-agent": true,
+					"host": true
+				}
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "host=[161.27.43.53:8083];accept=[application/json",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "host",
+						"value": "",
+						"type": "text"
+					},
+					{
+						"key": "accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Provider-Context-Broker",
+						"value": "http://{{IPOneNet FULVIO}}:1027",
+						"description": "Provider-Context-Broker: provider.context.broker.com/ is mandatory so that Provider DataApp knows which provider CB should sned request to",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Forward-To",
+						"value": "https://ecc-provider:8889/data",
+						"description": "Forward-To: ecc-providr.com is mandatory so that Consumer Connector knows location of B-endoint for Provider Connector. Request will contain URL of Provider Context Broker, so that Provider Data App knows where to forward request\n",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "https://localhost:8084/getentity/urn:ngsi-ld:Building:id1",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8084",
+					"path": [
+						"getentity",
+						"urn:ngsi-ld:Building:id1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
