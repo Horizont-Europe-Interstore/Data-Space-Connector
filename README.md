@@ -31,7 +31,7 @@ cd energy-data-space-connector/docker
 
 3.	Start the containers with the below commands:
 ```
-docker-compose up –d
+docker-compose up -d --build
 ```
 
 4.	To show logs use the command:
