@@ -1,4 +1,5 @@
-version: '3.3'
+version: '1.0.1'
+name: energy-data-space-connector
 services:
   ecc-provider:
     image: rdlabengpa/ids_execution_core_container:v1.11.0
@@ -300,6 +301,9 @@ services:
     networks:
       - provider
       - consumer
+    links:
+      - be-dataapp-consumer
+      - be-dataapp-provider
     volumes:
       - ./ecc_cert/execution_core_container.cer:/cert/execution_core_container.cer
       - ./local-api/data/scripts/cert.sh:/cert/cert.sh
@@ -343,8 +347,10 @@ services:
       - be-dataapp-consumer
 
 networks:
-  consumer: {}
-  provider: {}
+  consumer: 
+    driver: bridge
+  provider:
+    driver: bridge
 
 volumes:
   mongo-db: ~
