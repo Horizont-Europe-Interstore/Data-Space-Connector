@@ -311,7 +311,7 @@ services:
     command: bash -c " ./cert/cert.sh && ./entrypoint.sh"
     
   blockchain-notarization:
-    image: interstore/data-space-blockchain-notarization:1.0
+    image: interstore/data-space-blockchain-notarization:1.0.1
     container_name: blockchain-notarization
     expose: [ '${SERVER_PORT}' ]
     restart: always
