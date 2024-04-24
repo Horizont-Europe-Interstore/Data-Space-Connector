@@ -68,7 +68,7 @@ If you use an external ECC, the url must be publicly exposed with a static ip vi
 Inside the */docker* project folder, there is an *.env* environment configuration file. This file allow you to set all Back End configurations of the Data Space Connector. 
 
 #### Blockchain Notarization Service
-The Blockchain Notarization Service is enabled by default. To disable the service use the env variable below.
+The Blockchain Notarization Service is disabled by default. To enable the service use the env variable below.
 ```
 NOTARIZATION_ENABLED = **true|false**
 ```
