@@ -17,11 +17,11 @@ For the correct installation of docker and docker-compose, please refer to the o
 ## Energy Data Space Connector installation on Docker
 To proceed with the installation of Energy Dataspace Connector, the user must use the docker folder of the github repository that contains all the necessary configuration.
 
-1.	The first step is to clone this repository https://github.com/Horizont-Europe-Interstore/Energy-Data-Space-Connector in a specific folder *energy-data-space-connector*, by typing:
+1.	The first step is to clone this repository https://github.com/Horizont-Europe-Interstore/Data-Space-Connector in a specific folder *energy-data-space-connector*, by typing:
 ```
 mkdir energy-data-space-connector
 cd energy-data-space-connector
-git clone https://github.com/Horizont-Europe-Interstore/Energy-Data-Space-Connector.git
+git clone https://github.com/Horizont-Europe-Interstore/Data-Space-Connector.git
 ```
 
 2.	There is the *docker-compose.yml* file located under the docker folder that contains all the configuration of the Energy Data Space Connector containers. Go to that folder by typing the command:
@@ -31,7 +31,7 @@ cd energy-data-space-connector/docker
 
 3.	Start the containers with the below commands:
 ```
-docker-compose up -d --build
+docker compose up -d --build
 ```
 
 4.	To show logs use the command:
