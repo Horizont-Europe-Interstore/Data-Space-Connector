@@ -1,4 +1,4 @@
-FROM interstore/data-space-connector-ui:1.0.2
+FROM interstore/data-space-connector-ui:1.0.3
 
 ARG API_URL
 ENV API_URL=${API_URL}
