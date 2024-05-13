@@ -347,7 +347,7 @@ services:
       - be-dataapp-consumer
 
   dozzle:
-    image: amir20/dozzle
+    image: amir20/dozzle:latest
     container_name: connector-logs
     restart: unless-stopped
     volumes:
