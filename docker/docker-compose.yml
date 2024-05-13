@@ -346,6 +346,18 @@ services:
       - be-dataapp-provider
       - be-dataapp-consumer
 
+  dozzle:
+    image: amir20/dozzle
+    container_name: connector-logs
+    restart: unless-stopped
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    ports:
+      - "8081:8080"
+    networks:
+      - provider
+      - consumer
+
 networks:
   consumer: 
     driver: bridge
