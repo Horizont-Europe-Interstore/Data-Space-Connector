@@ -38,6 +38,10 @@ docker compose up -d --build
 ```
 docker-compose logs -f
 ```
+Alternatively you can use dozzle UI to access the logs of each container. Open the following url on your browser :
+```
+http://localhost:8081
+```
 
 5.	If no errors are seen, this means that Energy Data Space Connector was successfully deployed on your premisses.
 
