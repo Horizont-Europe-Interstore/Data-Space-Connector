@@ -29,10 +29,12 @@ git clone https://github.com/Horizont-Europe-Interstore/Data-Space-Connector.git
 cd energy-data-space-connector/docker
 ```
 
-3.	Start the containers with the below commands:
+3.	Start the containers with the below command:
 ```
 docker compose up -d --build
 ```
+The default configuration, recommended for connector testing, simulates a complete environment with 2 connectors within the same docker.
+If, however, you want use the connector in a real environment, or test it with 2 indipendent machine, please read section [Deploy a single connector instance](#deploy-a-single-connector-instance).
 
 4.	To show logs use the command:
 ```
@@ -44,6 +46,67 @@ http://localhost:8081
 ```
 
 5.	If no errors are seen, this means that Energy Data Space Connector was successfully deployed on your premisses.
+
+To stop all the containers use:
+```
+docker compose down
+```
+
+### Hints
+#### Deploy a single connector instance
+The configuration present within the docker-compose.yml simulates a complete environment with 2 connectors.
+By starting this configuration both connectors are started within the same docker.
+
+If, however, you want use the connector in a real environment, or test it with 2 indipendent machine, you can deploy a single connector instance.
+For this purpose, an additional docker-compose file (*docker-compose-single.yml*) is provided that launches a single connector instance.
+You can start this configuration using the commands:
+```
+docker compose -f docker-compose-single.yml up -d --build
+```
+and stop with:
+```
+docker compose -f docker-compose-single.yml down
+```
+This configuration is recommended for installing a connector production node because it allows you to launch a single connector instance and save hardware resources.
+
+#### Optional Nginx configuration
+Optionally you can use nginx as proxy.
+
+The folder _docker/nginx-connector-config/_ contains a [_docker-compose.yml_](docker/nginx-connector-config/docker-compose.yml) file and an example of nginx configuration ([_nginx.conf_](docker/nginx-connector-config/nginx.conf)).
+
+The [_docker-compose.yml_](docker/nginx-connector-config/docker-compose.yml) defines the nginx service to start (from the official image), the exposed ports and the volumes to mount.
+
+```
+services:
+  nginx:
+   image : nginx:latest
+   ports :
+       - "8080:8080"
+       - "80:80"
+       - "443:443"
+   volumes:
+       - ./ssl:/etc/nginx/ssl
+       - ./nginx.conf:/etc/nginx/conf.d/default.conf
+``` 
+
+The [(_nginx.conf_)](docker/nginx-connector-config/nginx.conf) contains header management, SSL configuration and location directives necessary for the correct functioning of the connector.
+
+In particular, for each service to be exposed, a location type directive must be defined with the following configurations (please replace the _**path**_ and _**uri**_ placeholders with your own values):
+```
+  location /<path> {
+    proxy_pass <uri>;
+    proxy_redirect off;
+    proxy_set_header    Upgrade     $http_upgrade;
+    proxy_set_header    Connection  "upgrade";
+    proxy_set_header Host $host:$server_port;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-Ssl on;
+    proxy_set_header  X-Forwarded-Proto  https;
+    rewrite ^/<path>/(.*)$ /$1 break;
+  }
+``` 
+
+For further information, refer to the [Official Nginx Guide](https://nginx.org/en/docs/).
 
 ### Login & Connector Settings
 The user interface is in a container that was installed on your premisses on the previous step. It can be accessed through the url:
