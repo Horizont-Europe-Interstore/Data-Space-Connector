@@ -291,7 +291,7 @@ services:
     build:
       context: local-api
       args:
-        CENTRAL_REGISTRY: https://onenet-ngsi-ld.eurodyn.com/api
+        CENTRAL_REGISTRY: https://smart-energy.eng.it/api
       dockerfile: Dockerfile
     image: local-api
     container_name: local-api
@@ -307,7 +307,7 @@ services:
       - ./ecc_cert/execution_core_container.cer:/cert/execution_core_container.cer
       - ./local-api/data/scripts/cert.sh:/cert/cert.sh
     restart: unless-stopped
-    command: bash -c " ./cert/cert.sh && ./entrypoint.sh"
+    command: bash -c " chmod +x ./cert/cert.sh && ./cert/cert.sh && ./entrypoint.sh"
     
   blockchain-notarization:
     image: interstore/data-space-blockchain-notarization:1.0.2
