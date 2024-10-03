@@ -1,4 +1,4 @@
-name: energy-data-space-connector-single
+name: energy-data-space-connector-single-v1-1-1
 services:
   ecc-provider:
     image: rdlabengpa/ids_execution_core_container:v1.11.0
@@ -77,7 +77,7 @@ services:
       - uc_provider_data:/data
 
   be-dataapp-provider:
-    image: interstore/data-space-connector-fiware-data-app:1.0.1
+    image: interstore/data-space-connector-fiware-data-app:1.0.2
     deploy:
       resources:
         limits:
@@ -126,7 +126,7 @@ services:
       - ./be-dataapp_resources_provider/data:/data
 
   orion:
-    image: fiware/orion-ld:0.7.0
+    image: fiware/orion-ld:1.6.0
     hostname: orion
     container_name: fiware-orion
     expose:
@@ -138,7 +138,8 @@ services:
       - provider
     depends_on:
       - mongo-db
-    command: -dbhost 'mongo-db' -db ${MONGO_INITDB_DATABASE} -dbuser ${MONGO_INITDB_ROOT_USERNAME} -dbpwd ${MONGO_INITDB_ROOT_PASSWORD} -statCounters -logLevel DEBUG -forwarding
+    command: -dbhost 'mongo-db' -db ${MONGO_INITDB_DATABASE} -dbuser ${MONGO_INITDB_ROOT_USERNAME} -dbpwd ${MONGO_INITDB_ROOT_PASSWORD} -statCounters -logLevel DEBUG -t 0-255 -inReqPayloadMaxSize 10485760
+    restart: unless-stopped
 
   mongo-db:
     image: mongo:3.6
@@ -161,7 +162,9 @@ services:
     build:
       context: local-api
       args:
-        CENTRAL_REGISTRY: https://smart-energy.eng.it/api
+        CENTRAL_REGISTRY: ${API_URL}
+        DATA_PART_SIZE: ${LOCAL_API_DATA_PART_SIZE}
+        DATA_SUBPART_NUMBER: ${LOCAL_API_DATA_SUBPART_NUMBER}
       dockerfile: Dockerfile
     image: local-api
     container_name: local-api
