@@ -138,7 +138,7 @@ services:
       - provider
     depends_on:
       - mongo-db
-    command: -dbhost 'mongo-db' -db ${MONGO_INITDB_DATABASE} -dbuser ${MONGO_INITDB_ROOT_USERNAME} -dbpwd ${MONGO_INITDB_ROOT_PASSWORD} -statCounters -logLevel DEBUG -t 0-255 -inReqPayloadMaxSize 10485760
+    command: -dbhost 'mongo-db' -db ${MONGO_INITDB_DATABASE} -dbuser ${MONGO_INITDB_ROOT_USERNAME} -dbpwd ${MONGO_INITDB_ROOT_PASSWORD} -statCounters -logLevel DEBUG -inReqPayloadMaxSize 10485760
     restart: unless-stopped
 
   mongo-db:
