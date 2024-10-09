@@ -1767,52 +1767,6 @@
 					"response": []
 				},
 				{
-					"name": "logout Copy",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									""
-								],
-								"type": "text/javascript",
-								"packages": {}
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkYTdhMDBlOS0zYjE5LTQ1NGQtYjcyYi04NjQ2ZDZlYWU2NzgiLCJpYXQiOjE3MTY5OTkxMzEsImV4cCI6MTcxNzAwMjczMX0.2z4NobJuEk_xvtnpb_rzqpIOk-LHhvz8I6f-0CqRBUhnkb5s5P018s7CyWEiBVhf7ggSjjXwH6EvlarAfsotvw"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n\t\"jwt\":\"eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkYTdhMDBlOS0zYjE5LTQ1NGQtYjcyYi04NjQ2ZDZlYWU2NzgiLCJpYXQiOjE3MTY5OTkxMzEsImV4cCI6MTcxNzAwMjczMX0.2z4NobJuEk_xvtnpb_rzqpIOk-LHhvz8I6f-0CqRBUhnkb5s5P018s7CyWEiBVhf7ggSjjXwH6EvlarAfsotvw\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{scheme}}://{{host}}/api/user/logout",
-							"protocol": "{{scheme}}",
-							"host": [
-								"{{host}}"
-							],
-							"path": [
-								"api",
-								"user",
-								"logout"
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "by-id",
 					"request": {
 						"method": "GET",
