@@ -1,4 +1,4 @@
-name: energy-data-space-connector-v1-1-1
+name: energy-data-space-connector-v1-1-2
 services:
   ecc-provider:
     image: rdlabengpa/ids_execution_core_container:v1.11.0
@@ -55,6 +55,7 @@ services:
       - ecc_provider_sd:/sd
     extra_hosts:
       - "ecc-provider:172.17.0.1"
+    restart: unless-stopped
 
   uc-dataapp-provider:
     image: rdlabengpa/ids_uc_data_app_platoon:v1.5
@@ -83,7 +84,7 @@ services:
       resources:
         limits:
           cpus: "1"
-          memory: 512M
+          memory: 1024M
     logging:
       options:
         max-size: "100M"
@@ -125,6 +126,7 @@ services:
       - ./be-dataapp_resources_provider:/config
       - ./ecc_cert:/cert
       - ./be-dataapp_resources_provider/data:/data
+    restart: unless-stopped
 
   ecc-consumer:
     image: rdlabengpa/ids_execution_core_container:v1.11.0
@@ -182,6 +184,7 @@ services:
       - ecc_consumer_sd:/sd
     extra_hosts:
       - "ecc-consumer:172.17.0.1"
+    restart: unless-stopped
 
   uc-dataapp-consumer:
     image: rdlabengpa/ids_uc_data_app_platoon:v1.5
@@ -210,7 +213,7 @@ services:
       resources:
         limits:
           cpus: "1"
-          memory: 512M
+          memory: 1024M
     logging:
       options:
         max-size: "100M"
@@ -252,6 +255,7 @@ services:
       - ./be-dataapp_resources_consumer:/config
       - ./ecc_cert:/cert
       - ./be-dataapp_resources_consumer/data:/data
+    restart: unless-stopped
 
   orion:
     image: fiware/orion-ld:1.6.0
