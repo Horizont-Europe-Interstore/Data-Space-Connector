@@ -1,5 +1,29 @@
 # Energy-Data-Space-Connector
 
+## Introduction
+<img src="images/TRUE_Connector_Logo.png" alt="True Connector" width="25%" height="25%">
+<img src="images/idsa-sign-component-certification-small.png" alt="IDS certified" width="5%" height="5%">
+
+This project started from and extends the [Engineering True Connector](https://github.com/Engineering-Research-and-Development/true-connector), a general purpose Data Space Connector and open-source project developed by ENG. The connector is an open-source solution, designed to enable self-determined data sharing while ensuring compliance with regulations such as GDPR. Initially focused on the manufacturing domain, the TRUE Connector has proven its versatility across diverse sectors including circular economy, energy, smart buildings, and agri-food domains. It has recently received IDS certification.
+
+<br />
+
+<img src="images/OneNet.svg" alt="OneNet Project" width="15%" height="15%">
+
+Furthermore, the project builds upon the work carried out with the [OneNet connector](https://github.com/european-dynamics-rnd/OneNet), developed within the [OneNet project](https://www.onenet-project.eu/). Specifically, the following elements were adopted and extended from the OneNet connector: 
+
+* the OneNet Middleware for centralized services such as Identity Management and Service Catalogue (extended)
+* the Semantic Vocabulary with more than 60 standardized services for the energy domain
+
+## New Features 
+
+This version of the Energy Data Space Connector includes:
+
+* New open-source advanced GUI 
+* Blockchain Notarization and Verification for data transactions
+
+
+
 ## Prerequisites
 The deployment process involves the use of Docker containers. The use of Docker guarantees not only an easy deployment process and total portability of the solution, but also a high level of scalability of the released applications.
 The hardware and operating system prerequisites are:
