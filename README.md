@@ -21,6 +21,7 @@ This version of the Energy Data Space Connector includes:
 
 * New open-source advanced GUI 
 * Blockchain Notarization and Verification for data transactions
+* Integration of External Service via REST APIs and Push mechanisms
 
 
 
@@ -159,11 +160,28 @@ If you use an external ECC, the url must be publicly exposed with a static ip vi
 Inside the */docker* project folder, there is an *.env* environment configuration file. This file allow you to set all Back End configurations of the Data Space Connector. 
 
 #### Blockchain Notarization Service
-The Blockchain Notarization Service is disabled by default. To enable the service use the env variable below.
+The Blockchain Notarization Service is disabled by default. To enable it, use the env variable below.
 ```
 NOTARIZATION_ENABLED = **true|false**
 ```
+The blockchain account provided is intended for testing purposes only. For production or large-scale use, each partner should create their own wallet and accounts.
 
+The blockchain used in this project is Polygon. To create a test credential (with Amoy), you can use Alchemy by following this [step-by-step guide](https://docs.alchemy.com/docs/alchemy-quickstart-guide).
+You can request test tokens using this [service link](https://faucet.polygon.technology/).
+By completing this [form](https://docs.google.com/forms/d/e/1FAIpQLSe4npoGldJknEs9EBtPaV3AS-0HTso2IuMWDCiMmLEMCx8euQ/viewform), you can receive 100 tokens on the Amoy testnet for free.
+
+To configure the account to be used in notarization service can be used the env variables below.
+```
+AMOY_API_KEY
+MNEMONIC
+```
+
+#### Push Mechanism Flow
+The Push mechanism flow is enabled by default. To disable the function use the env variable below.
+```
+PUSH_ENABLED = **true|false**
+```
+The Push URI can be configured in Push service creation interface.
 
 ## Postman collections TRUEConnector
 

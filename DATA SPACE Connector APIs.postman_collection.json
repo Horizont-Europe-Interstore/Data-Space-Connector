@@ -581,7 +581,41 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"data_catalog_data_offerings\": {\n        \"id\": null,\n        \"title\": \"test\",\n        \"data_catalog_business_object_id\": \"9c1c921c-ed76-11ec-b257-1e00ea366d34\",\n        \"created_by\": \"da7a00e9-3b19-454d-b72b-8646d6eae678\",\n        \"created_on\": \"2024-02-13T14:09:25.294799Z\",\n        \"status\": \"active\",\n        \"active_from\": \"2024-02-13T14:09:25.295528Z\",\n        \"active_from_enable\": \"0\",\n        \"active_to\": \"2024-02-16T14:09:25.296335Z\",\n        \"active_to_enable\": \"0\"\n    }\n}",
+							"raw": "{\n    \"data_catalog_data_offerings\": {\n        \"id\": null,\n        \"title\": \"test bypostman\",\n        \"data_catalog_business_object_id\": \"9c1c921c-ed76-11ec-b257-1e00ea366d34\",\n        \"created_by\": \"da7a00e9-3b19-454d-b72b-8646d6eae678\",\n        \"created_on\": \"2024-02-13T14:09:25.294799Z\",\n        \"status\": \"active\",\n        \"active_from\": \"2024-02-13T14:09:25.295528Z\",\n        \"active_from_enable\": \"0\",\n        \"active_to\": \"2024-02-16T14:09:25.296335Z\",\n        \"active_to_enable\": \"0\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{scheme}}://{{host}}/api/dataset/my_offered_services",
+							"protocol": "{{scheme}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"dataset",
+								"my_offered_services"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "save Push",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"data_catalog_data_offerings\": {\n        \"id\": null,\n        \"title\": \"test by postman\",\n        \"data_catalog_business_object_id\": \"9c1c921c-ed76-11ec-b257-1e00ea366d34\",\n        \"created_by\": \"da7a00e9-3b19-454d-b72b-8646d6eae678\",\n        \"created_on\": \"2024-02-13T14:09:25.294799Z\",\n        \"status\": \"active\",\n        \"active_from\": \"2024-02-13T14:09:25.295528Z\",\n        \"active_from_enable\": \"0\",\n        \"active_to\": \"2024-02-16T14:09:25.296335Z\",\n        \"active_to_enable\": \"0\",\n        \"type\": \"push\",\n        \"uri\": \"https://postman-echo.com/post\"\n    }\n}",
 							"options": {
 								"raw": {
 									"language": "json"
