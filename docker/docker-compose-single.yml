@@ -1,4 +1,4 @@
-name: energy-data-space-connector-single-v1-1-2
+name: energy-data-space-connector-single-v1-2-0
 services:
   ecc-provider:
     image: rdlabengpa/ids_execution_core_container:v1.11.0
@@ -78,7 +78,7 @@ services:
       - uc_provider_data:/data
 
   be-dataapp-provider:
-    image: interstore/data-space-connector-fiware-data-app:1.0.2
+    image: interstore/data-space-connector-fiware-data-app:latest
     deploy:
       resources:
         limits:
@@ -183,7 +183,7 @@ services:
     command: bash -c " chmod +x ./cert/cert.sh && ./cert/cert.sh && ./entrypoint.sh"
     
   blockchain-notarization:
-    image: interstore/data-space-blockchain-notarization:1.0.2
+    image: interstore/data-space-blockchain-notarization:latest
     container_name: blockchain-notarization
     expose: [ '${SERVER_PORT}' ]
     restart: always

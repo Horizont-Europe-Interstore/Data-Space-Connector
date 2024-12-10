@@ -1,4 +1,4 @@
-FROM interstore/local-api:1.2.0
+FROM interstore/local-api:latest
 
 EXPOSE 30001
 
