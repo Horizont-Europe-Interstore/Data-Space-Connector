@@ -204,6 +204,7 @@ services:
       dockerfile: Dockerfile
       args:
         API_URL: ${API_URL}
+        PUSH_ENABLED: ${PUSH_ENABLED}
     image: connector-ui
     container_name: connector-ui
     volumes:
