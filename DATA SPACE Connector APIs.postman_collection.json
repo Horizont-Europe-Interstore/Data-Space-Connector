@@ -1261,6 +1261,40 @@
 					"response": []
 				},
 				{
+					"name": "post test Copy",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"data_send\": {\n    \"fileName\": \"Test Data --- (2).txt\",\n    \"data_catalog_data_offerings_id\": \"e3583392-5eea-4444-8cbd-3e01749d6768\",\n    \"description\": \"\",\n    \"title\": \"Test data\",\n    \"fileSize\": 4,\n    \"message\": \"data:text/plain;base64,dGVzdA==\",\n    \"sub-entities\": {\n      \"provider\": {\n        \"id\": \"da7a00e9-3b19-454d-b72b-8646d6eae678\",\n        \"broker_url\": \"http://your-ip-address:1026\",\n        \"ecc_url\": \"https://ecc-provider:8889/data\",\n        \"provider_fiware_url\": \"https://be-dataapp-provider:8083\",\n        \"ed_api_url\": \"http://localhost:30001/api\"\n      }\n    },\n    \"created_by\": \"da7a00e9-3b19-454d-b72b-8646d6eae678\"\n  }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local_api_scheme}}://{{local_api_host}}/api/dataset/data_provided",
+							"protocol": "{{local_api_scheme}}",
+							"host": [
+								"{{local_api_host}}"
+							],
+							"path": [
+								"api",
+								"dataset",
+								"data_provided"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "page",
 					"event": [
 						{
