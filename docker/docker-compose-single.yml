@@ -131,11 +131,11 @@ services:
     image: fiware/orion-ld:1.6.0
     hostname: orion
     container_name: fiware-orion
-    expose:
-      - "1026"
-      - "8083"
-    ports:
-      - "1026:1026"
+    # expose:
+    #   - "1026"
+    #   - "8083"
+    # ports:
+    #   - "1026:1026"
     networks:
       - provider
     depends_on:
