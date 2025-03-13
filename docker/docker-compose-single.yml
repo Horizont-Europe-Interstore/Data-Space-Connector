@@ -1,4 +1,4 @@
-name: energy-data-space-connector-single-v1-2-0
+name: energy-data-space-connector-single-v1-3-1
 services:
   ecc-provider:
     image: rdlabengpa/ids_execution_core_container:v1.11.0
@@ -205,6 +205,7 @@ services:
       args:
         API_URL: ${API_URL}
         PUSH_ENABLED: ${PUSH_ENABLED}
+        DATA_APP_NAME: ${DATA_APP_NAME}
     image: connector-ui
     container_name: connector-ui
     volumes:
