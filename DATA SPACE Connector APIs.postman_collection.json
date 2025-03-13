@@ -511,6 +511,18 @@
 							"listen": "test",
 							"script": {
 								"exec": [
+									"var jsonData = JSON.parse(pm.response.text());\r",
+									"console.log(jsonData.listContent[0]);\r",
+									"pm.collectionVariables.set(\"entity_id\", jsonData.listContent[0].cf_id);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
 									""
 								],
 								"type": "text/javascript",
@@ -1123,12 +1135,7 @@
 						}
 					},
 					"response": []
-				}
-			]
-		},
-		{
-			"name": "Data Provided",
-			"item": [
+				},
 				{
 					"name": "left-grouping",
 					"event": [
@@ -1139,7 +1146,8 @@
 									"var jsonData = JSON.parse(responseBody);",
 									"pm.collectionVariables.set(\"entity_id\", jsonData[0].cf_id);"
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						}
 					],
@@ -1152,7 +1160,7 @@
 							}
 						],
 						"url": {
-							"raw": "{{scheme}}://{{host}}/api/datalist/data_provided",
+							"raw": "{{scheme}}://{{host}}/api/datalist/left-grouping/my_push_sub?ft_type=data",
 							"protocol": "{{scheme}}",
 							"host": [
 								"{{host}}"
@@ -1160,12 +1168,24 @@
 							"path": [
 								"api",
 								"datalist",
-								"data_provided"
+								"left-grouping",
+								"my_push_sub"
+							],
+							"query": [
+								{
+									"key": "ft_type",
+									"value": "data"
+								}
 							]
 						}
 					},
 					"response": []
-				},
+				}
+			]
+		},
+		{
+			"name": "Data Provided",
+			"item": [
 				{
 					"name": "by-id",
 					"request": {
@@ -1228,40 +1248,6 @@
 				},
 				{
 					"name": "post test",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Bearer {{token}}"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"data_send\": {\n    \"fileName\": \"Test Data --- (2).txt\",\n    \"data_catalog_data_offerings_id\": \"e3583392-5eea-4444-8cbd-3e01749d6768\",\n    \"description\": \"\",\n    \"title\": \"Test data\",\n    \"fileSize\": 4,\n    \"message\": \"data:text/plain;base64,dGVzdA==\",\n    \"sub-entities\": {\n      \"provider\": {\n        \"id\": \"da7a00e9-3b19-454d-b72b-8646d6eae678\",\n        \"broker_url\": \"http://your-ip-address:1026\",\n        \"ecc_url\": \"https://ecc-provider:8889/data\",\n        \"provider_fiware_url\": \"https://be-dataapp-provider:8083\",\n        \"ed_api_url\": \"http://localhost:30001/api\"\n      }\n    },\n    \"created_by\": \"da7a00e9-3b19-454d-b72b-8646d6eae678\"\n  }\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{local_api_scheme}}://{{local_api_host}}/api/dataset/data_provided",
-							"protocol": "{{local_api_scheme}}",
-							"host": [
-								"{{local_api_host}}"
-							],
-							"path": [
-								"api",
-								"dataset",
-								"data_provided"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "post test Copy",
 					"request": {
 						"method": "POST",
 						"header": [
@@ -1423,7 +1409,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"title\": \"Test ENG Postman\",\r\n  \"description\": \"Test description ENG Postman\",\r\n  \"filename\": \"test.txt\",\r\n  \"file\": \"data:text/plain;base64,dGVzdA==\",\r\n  \"fileSize\": \"4\",\r\n  \"data_offering_id\": \"2b71d0d0-461d-44c7-8083-016ad0188ebd\",\r\n  \"code\": \"00\"\r\n}",
+							"raw": "{\r\n  \"title\": \"Test ENG Postman\",\r\n  \"description\": \"Test description ENG Postman\",\r\n  \"filename\": \"test.txt\",\r\n  \"file\": \"data:text/plain;base64,dGVzdA==\",\r\n  \"fileSize\": \"4\",\r\n  \"data_offering_id\": \"7ad3ff43-0e5c-4df1-9052-39e332cf1726\",\r\n  \"code\": \"03\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1551,13 +1537,109 @@
 					"response": []
 				},
 				{
+					"name": "get-file semplified",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{local_api_scheme}}://{{local_api_host}}/api/consume-data/by-id?id={{entity_id}}",
+							"protocol": "{{local_api_scheme}}",
+							"host": [
+								"{{local_api_host}}"
+							],
+							"path": [
+								"api",
+								"consume-data",
+								"by-id"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "{{entity_id}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get list file (local-api)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{local_api_scheme}}://{{local_api_host}}/api/consume-data/list",
+							"protocol": "{{local_api_scheme}}",
+							"host": [
+								"{{local_api_host}}"
+							],
+							"path": [
+								"api",
+								"consume-data",
+								"list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get list file (local-api) with pagination",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{local_api_scheme}}://{{local_api_host}}/api/consume-data/page/0",
+							"protocol": "{{local_api_scheme}}",
+							"host": [
+								"{{local_api_host}}"
+							],
+							"path": [
+								"api",
+								"consume-data",
+								"page",
+								"0"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "page",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
 								"exec": [
-									""
+									"var jsonData = JSON.parse(pm.response.text());\r",
+									"console.log(jsonData.listContent[0]);\r",
+									"pm.collectionVariables.set(\"entity_id\", jsonData.listContent[0].id);"
 								],
 								"type": "text/javascript",
 								"packages": {}
@@ -1584,6 +1666,67 @@
 								"data_consumed",
 								"page",
 								"0"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "page (filtered)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"url": {
+							"raw": "{{scheme}}://{{host}}/api/datalist/data_consumed/page/0?cf_type=data&sel-sort-code=&sel-sort-order=&&ft_created_by=c2ca69e7-b6e9-48df-ada3-4cbd66490536",
+							"protocol": "{{scheme}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"datalist",
+								"data_consumed",
+								"page",
+								"0"
+							],
+							"query": [
+								{
+									"key": "cf_type",
+									"value": "data"
+								},
+								{
+									"key": "sel-sort-code",
+									"value": ""
+								},
+								{
+									"key": "sel-sort-order",
+									"value": ""
+								},
+								{
+									"key": null,
+									"value": null
+								},
+								{
+									"key": "ft_created_by",
+									"value": "c2ca69e7-b6e9-48df-ada3-4cbd66490536"
+								}
 							]
 						}
 					},
@@ -2225,22 +2368,13 @@
 			]
 		},
 		{
-			"name": "Test",
+			"name": "Others",
 			"item": [
 				{
 					"name": "page Copy",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									""
-								],
-								"type": "text/javascript",
-								"packages": {}
-							}
-						}
-					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
 					"request": {
 						"method": "GET",
 						"header": [
@@ -2249,8 +2383,17 @@
 								"value": "Bearer {{token}}"
 							}
 						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\":\"user6\",\n\t\"password\":\"123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": "{{scheme}}://{{host}}/api/datalist/cross_platform_service/page/0",
+							"raw": "{{scheme}}://{{host}}/api/datalist/users/page/0",
 							"protocol": "{{scheme}}",
 							"host": [
 								"{{host}}"
@@ -2258,7 +2401,7 @@
 							"path": [
 								"api",
 								"datalist",
-								"cross_platform_service",
+								"users",
 								"page",
 								"0"
 							]
@@ -2267,6 +2410,14 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "New Request",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
 		}
 	],
 	"event": [
@@ -2304,7 +2455,7 @@
 		},
 		{
 			"key": "host",
-			"value": "smart-energy.eng.it"
+			"value": "smart-energy.eng.it/dev"
 		},
 		{
 			"key": "token",
