@@ -22,6 +22,7 @@ This version of the Energy Data Space Connector includes:
 * New open-source advanced GUI 
 * Blockchain Notarization and Verification for data transactions
 * Integration of External Service via REST APIs and Push mechanisms
+* NATS protocol integration through the NATS Component
 
 
 
@@ -182,6 +183,11 @@ The Push mechanism flow is enabled by default. To disable the function use the e
 PUSH_ENABLED = **true|false**
 ```
 The Push URI can be configured in Push service creation interface.
+
+#### NATS Component
+The NATS Component allows, among other things, IEEE 2030.5 integration with the Energy Data Space Framework.
+For details about the NATS Component, please refer to the [specific repository](https://github.com/Horizont-Europe-Interstore/Data-Space-Nats-Client).
+
 
 ## Postman collections TRUEConnector
 
