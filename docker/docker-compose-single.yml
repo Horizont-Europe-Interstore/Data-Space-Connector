@@ -1,4 +1,4 @@
-name: energy-data-space-connector-v1-4-0
+name: energy-data-space-connector-v1-3-2
 services:
   ecc-provider:
     image: rdlabengpa/ids_execution_core_container:v1.11.0
