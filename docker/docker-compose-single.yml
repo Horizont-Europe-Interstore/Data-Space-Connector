@@ -1,4 +1,4 @@
-name: energy-data-space-connector-single-v1-3-1
+name: energy-data-space-connector-v1-4-0
 services:
   ecc-provider:
     image: rdlabengpa/ids_execution_core_container:v1.11.0
@@ -140,7 +140,7 @@ services:
       - provider
     depends_on:
       - mongo-db
-    command: -dbhost 'mongo-db' -db ${MONGO_INITDB_DATABASE} -dbuser ${MONGO_INITDB_ROOT_USERNAME} -dbpwd ${MONGO_INITDB_ROOT_PASSWORD} -statCounters -logLevel DEBUG -inReqPayloadMaxSize 10485760
+    command: -dbhost ${MONGO_HOST_IP} -db ${MONGO_INITDB_DATABASE} -dbuser ${MONGO_INITDB_ROOT_USERNAME} -dbpwd ${MONGO_INITDB_ROOT_PASSWORD} -statCounters -logLevel DEBUG -inReqPayloadMaxSize 10485760
     restart: unless-stopped
 
   mongo-db:
@@ -203,13 +203,15 @@ services:
       context: connector-ui
       dockerfile: Dockerfile
       args:
-        API_URL: ${API_URL}
+        API_URL: /api
+        CENTRAL_API_URL: ${API_URL}
         PUSH_ENABLED: ${PUSH_ENABLED}
         DATA_APP_NAME: ${DATA_APP_NAME}
     image: connector-ui
     container_name: connector-ui
     volumes:
-      - ./nginx-conf/ui-nginx.conf:/etc/nginx/conf.d/ui-nginx.conf
+      - ./connector-ui/nginx-conf/ui-nginx.conf:/etc/nginx/templates/ui-nginx.conf.template
+      - ./connector-ui/theme/interstore:/usr/share/nginx/html/img/theme
     ports:
       - "8080:8080"
     restart: always

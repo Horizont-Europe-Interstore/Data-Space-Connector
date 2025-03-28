@@ -140,7 +140,7 @@ The user interface is in a container that was installed on your premisses on the
 http://localhost:8080/
 ```
 
-1.	You should see the login interface, sign-in using the username & password that you received from the Interstore Connector administrator.
+1.	You should see the login interface, sign-in using the username & password that you received from the Data Space Connector administrator.
 
 2.	Navigate to the connector settings by the sidebar menu & define the urls of your Local Api Url, Data App Url, Ecc Url. Those 3 connector applications are running on the containers that you installed, so the urls must be configured accordingly as shown below.
 
